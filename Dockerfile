@@ -16,8 +16,6 @@ RUN \
   DEBIAN_FRONTEND=noninteractive apt-get install -y sudo vim-tiny git && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-7-jre-headless && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y curl
-  
-# DEBIAN_FRONTEND=noninteractive apt-get install -y supervisor && \
 
 # Add user gerrit & group like also gerrit to sudo to allow the gerrit user to issue a sudo cmd
 RUN groupadd $GERRIT_USER && \
@@ -29,7 +27,7 @@ RUN mkdir ${GERRIT_HOME}
 ADD http://gerrit-releases.storage.googleapis.com/gerrit-${GERRIT_VERSION}.war ${GERRIT_HOME}/${GERRIT_WAR}
 
 # Copy the files to bin, config & job folders
-ADD ./git/project-config ${GERRIT_HOME}/config
+ADD ./configs ${GERRIT_HOME}/configs
 ADD ./job ${GERRIT_HOME}/job
 ADD ./bin ${GERRIT_HOME}/bin
 RUN chmod +x ${GERRIT_HOME}/bin/conf-and-run-gerrit.sh
