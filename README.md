@@ -74,6 +74,7 @@ docker run -dP -p 0.0.0.0:8080:8080 -p 127.0.0.1:29418:29418 \
        -e GERRIT_ACCOUNTS='jenkins,jenkins,jenkins@fabric8.io,secret,Non-Interactive Users:Administrators;sonar,sonar,sonar@fabric8.io,secret,Non-Interactive Users' \
        -e GERRIT_SSH_PATH='/VolumeMounted/ssh-keys' \
        -e AUTH_TYPE='DEVELOPMENT_BECOME_ANY_ACCOUNT' \
+       -e ROOT_PATH='http://localhost:8080' \
        -v /admin_user/home/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
        -v /admin_user/home/.ssh/id_rsa:/root/.ssh/id_rsa \
        -v /accounts/ssh-keys/:/home/gerrit/ssh-keys \       

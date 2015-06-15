@@ -28,7 +28,11 @@ else
   # Configure Gerrit
   echo ">> Configure Git Config and change AUTH_TYPE"
   sed -i  's/__AUTH_TYPE__/'${AUTH_TYPE}'/g' ${GERRIT_SITE}/etc/gerrit.config
-  sed -i  's/__ROOT_PATH__/'${ROOT_PATH}'/g' ${GERRIT_SITE}/etc/gerrit.config
+  
+  if [ -z ${ROOT_PATH} ]
+	ROOT_PATH='http://localhost:8080'
+  fi
+  #sed -i  's/__ROOT_PATH__/'${ROOT_PATH}'/g' ${GERRIT_SITE}/etc/gerrit.config
   
   # Regenerate the site but using now our create-admin-user plugin
   java -jar ${GERRIT_HOME}/$GERRIT_WAR init --batch --no-auto-start -d ${GERRIT_SITE}
