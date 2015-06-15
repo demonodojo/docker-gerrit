@@ -29,9 +29,10 @@ else
   echo ">> Configure Git Config and change AUTH_TYPE"
   sed -i  's/__AUTH_TYPE__/'${AUTH_TYPE}'/g' ${GERRIT_SITE}/etc/gerrit.config
   
-  if [ -z ${ROOT_PATH} ]
+  if [ -z ${ROOT_PATH} ]; then
 	ROOT_PATH='http://localhost:8080/'
   fi
+  echo $ROOT_PATH
   ROOT_PATH=`echo $ROOT_PATH | sed -e 's/\//\\\&/g'`
   sed -i  's/__ROOT_PATH__/'${ROOT_PATH}'/g' ${GERRIT_SITE}/etc/gerrit.config
   
